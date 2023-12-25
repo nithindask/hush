@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="hush.png" rel="icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+
+<!--backup font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
+<!--backup font -->
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .ball {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            border-radius: 50%;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px 5px white;
+        }
+
+        #inhaleText {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #exhaleText {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+          .text {
+              position: absolute;
+              font-size: 12vw;
+              display: none;
+              font-family: 'Bungee';
+    -webkit-animation: fadeinout 4s linear forwards;
+    animation: fadeinout 4s linear forwards;
+}
+
+@-webkit-keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            border-radius: 50%;
+        }
+    </style>
+    <title>HUSH</title>
+</head>
+<body>
+
+    <div class="star" style="top: 20%; left: 30%;"></div>
+    <div class="star" style="top: 70%; left: 70%;"></div>
+    <div class="star" style="top: 40%; left: 10%;"></div>
+    <div class="star" style="top: 60%; left: 50%;"></div>
+    <div class="star" style="top: 10%; left: 80%;"></div>
+    <div class="star" style="top: 30%; left: 20%;"></div>
+    <div class="star" style="top: 90%; left: 40%;"></div>
+    <div class="star" style="top: 50%; left: 90%;"></div>
+
+    <a href="https://instagram.com/charle_404"><div class="ball"></div></a>
+    <div id="inhaleText" class="text">INHALE</div>
+    <div id="exhaleText" class="text">EXHALE</div>
+
+    <script>
+        const ball = document.querySelector('.ball');
+        const inhaleText = document.getElementById('inhaleText');
+        const exhaleText = document.getElementById('exhaleText');
+        let position = 0, direction = 2.5;
+
+        function animateBall() {
+            position += direction;
+            ball.style.bottom = position + 'px';
+
+            if (direction < 0) {
+                inhaleText.style.display = 'none';
+                exhaleText.style.display = position < window.innerHeight - 50 && position > 0 ? 'block' : 'none';
+            } else {
+                exhaleText.style.display = 'none';
+                inhaleText.style.display = position < window.innerHeight - 50 && position > 0 ? 'block' : 'none';
+            }
+
+            if (position >= window.innerHeight - 50 || position <= 0) {
+                direction *= -1;
+            }
+
+            requestAnimationFrame(animateBall);
+        }
+
+        animateBall();
+    </script>
+</body>
+</html>
